@@ -6,20 +6,20 @@
     <link rel="stylesheet" href="./CSS/styles.css">
 </head>
 <body>
-    <h1>
-        Memory Game
-    </h1>
-    <select id="difficulty">
-        <option value="easy">Easy (4x4)</option>
-        <option value="medium">Medium (6x6)</option>
-        <option value="hard">Hard (8x8)</option>
-    </select>
-    <button id="newGameBtn">New Game</button>
+    <div class="game-container">
+        <h1>Memory Game</h1>
+        <select id="difficulty">
+            <option value="easy">Easy (4x4)</option>
+            <option value="medium">Medium (6x6)</option>
+            <option value="hard">Hard (8x8)</option>
+        </select>
+        <button id="newGameBtn">New Game</button>
 
-    <p>Moves: <span id="moveCount">0</span></p>
-    <p>Time: <span id="timer">00:00</span></p>
+        <p>Moves: <span id="moveCount">0</span></p>
+        <p>Time: <span id="timer">00:00</span></p>
 
-    <div id="gameBoard"></div>
+        <div id="gameBoard"></div>
+    </div>
     <script src="./JS/scripts.js"></script>
 </body>
 </html>
