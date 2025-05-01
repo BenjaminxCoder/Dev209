@@ -27,14 +27,14 @@ If they don’t → they flip back after a second.
 ⸻
 
 ### 📂 Project Structure
-
+'''text
 /Memory_Game
 ├── index.html
 ├── /CSS
 │   └── styles.css
 └── /JS
     └── scripts.js
-
+'''
 ⸻
 
 ### 💻 Key Code Highlights
