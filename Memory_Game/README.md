@@ -2,7 +2,7 @@
 
 A simple Memory Matching Game built with HTML, CSS, and JavaScript using DOM manipulation. Flip two cards at a time to find matching pairs. Includes difficulty levels, move counter, and timer.
 
-⸻
+---
 
 ### 🚀 Features
 
@@ -13,7 +13,7 @@ A simple Memory Matching Game built with HTML, CSS, and JavaScript using DOM man
 ✅ Responsive design inside a centered game card
 ✅ Clean UI with modern styling
 
-⸻
+---
 
 ### 📝 How to Play
 ```
@@ -25,7 +25,7 @@ If they don’t → they flip back after a second.
 	5.	Match all pairs to win!
 	6.	Track your moves and time as you play.
 ```
-⸻
+---
 
 ### 📂 Project Structure
 ```text
@@ -36,7 +36,7 @@ If they don’t → they flip back after a second.
 └── /JS
     └── scripts.js
 ```
-⸻
+---
 
 ### 💻 Key Code Highlights
 
@@ -52,14 +52,14 @@ Each card uses addEventListener('click', handleCardClick) to respond to clicks.
 ✅ ES6 Feature Example:
 Arrow functions, const, let, and template literals.
 
-⸻
+---
 
 ### 🛠️ Tech Used
 	•	HTML5
 	•	CSS3 (Grid, Flexbox)
 	•	Vanilla JavaScript (ES6+)
 
-⸻
+---
 
 ### 🧑‍💻 Credits
 
