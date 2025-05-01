@@ -36,14 +36,17 @@ p {
 
 .game-container #gameBoard.easy {
     grid-template-columns: repeat(4, 60px);
+    width: calc(4 * 60px + 3 * 10px);
 }
 
 .game-container #gameBoard.medium {
     grid-template-columns: repeat(6, 50px);
+    width: calc(6 * 50px + 5 * 10px);
 }
 
 .game-container #gameBoard.hard {
     grid-template-columns: repeat(8, 40px);
+    width: calc(8 * 40px + 7 * 10px);
 }
 
 .card {
