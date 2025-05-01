@@ -1,10 +1,10 @@
-###🎮 Memory Game
+# 🎮 Memory Game
 
 A simple Memory Matching Game built with HTML, CSS, and JavaScript using DOM manipulation. Flip two cards at a time to find matching pairs. Includes difficulty levels, move counter, and timer.
 
 ⸻
 
-🚀 Features
+### 🚀 Features
 
 ✅ Flip and match cards
 ✅ Three difficulty levels: Easy (4x4), Medium (6x6), Hard (8x8)
@@ -15,7 +15,7 @@ A simple Memory Matching Game built with HTML, CSS, and JavaScript using DOM man
 
 ⸻
 
-📝 How to Play
+### 📝 How to Play
 	1.	Select a difficulty from the dropdown (Easy, Medium, Hard).
 	2.	Click New Game to start.
 	3.	Click two cards to flip them.
@@ -26,7 +26,7 @@ If they don’t → they flip back after a second.
 
 ⸻
 
-📂 Project Structure
+### 📂 Project Structure
 
 /Memory_Game
 ├── index.html
@@ -37,7 +37,7 @@ If they don’t → they flip back after a second.
 
 ⸻
 
-💻 Key Code Highlights
+### 💻 Key Code Highlights
 
 ✅ Functional Programming Concept:
 Used Array.sort() with a function to shuffle cards randomly.
@@ -53,19 +53,14 @@ Arrow functions, const, let, and template literals.
 
 ⸻
 
-🛠️ Tech Used
+### 🛠️ Tech Used
 	•	HTML5
 	•	CSS3 (Grid, Flexbox)
 	•	Vanilla JavaScript (ES6+)
 
 ⸻
 
-📸 Preview
-
-
-⸻
-
-🧑‍💻 Credits
+### 🧑‍💻 Credits
 
 Developed by Benjamin.
 Assignment for Web Development class.
