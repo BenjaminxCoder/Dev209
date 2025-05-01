@@ -16,6 +16,7 @@ A simple Memory Matching Game built with HTML, CSS, and JavaScript using DOM man
 ⸻
 
 ### 📝 How to Play
+```
 	1.	Select a difficulty from the dropdown (Easy, Medium, Hard).
 	2.	Click New Game to start.
 	3.	Click two cards to flip them.
@@ -23,18 +24,18 @@ A simple Memory Matching Game built with HTML, CSS, and JavaScript using DOM man
 If they don’t → they flip back after a second.
 	5.	Match all pairs to win!
 	6.	Track your moves and time as you play.
-
+```
 ⸻
 
 ### 📂 Project Structure
-'''text
+```text
 /Memory_Game
 ├── index.html
 ├── /CSS
 │   └── styles.css
 └── /JS
     └── scripts.js
-'''
+```
 ⸻
 
 ### 💻 Key Code Highlights
