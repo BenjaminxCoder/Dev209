@@ -87,3 +87,12 @@ body > h1, body > select, body > button, body > p {
     margin: 40px auto;
     text-align: center;
 }
+.game-container #gameBoard.medium .card {
+    width: 50px;
+    height: 50px;
+}
+
+.game-container #gameBoard.hard .card {
+    width: 40px;
+    height: 40px;
+}
