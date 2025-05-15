@@ -10,20 +10,21 @@ const cardSets = {
     hard: ['A','B','C','D','E','F','G','H','I','J','K','L','M','N','O','P','Q','R','S','T','U','V','W','X','Y','Z','1','2','3','4']
 };
 
-function startTimer() {
+function startTimer(reset = true) {
     clearInterval(timerInterval);
-    secondsElapsed = 0;
-    document.getElementById('timer').textContent = '00:00';
+    if (reset) secondsElapsed = 0;
+    document.getElementById('timer').textContent = `${String(Math.floor(secondsElapsed / 60)).padStart(2, '0')}:${String(secondsElapsed % 60).padStart(2, '0')}`;
 
     timerInterval = setInterval(() => {
         secondsElapsed++;
         const minutes = String(Math.floor(secondsElapsed / 60)).padStart(2, '0');
         const seconds = String(secondsElapsed % 60).padStart(2, '0');
         document.getElementById('timer').textContent = `${minutes}:${seconds}`;
+        sessionStorage.setItem('timer', secondsElapsed);
     }, 1000);
 }
-function startNewGame() {
-    startTimer();
+function startNewGame(reset = true) {
+    startTimer(reset);
     const difficulty = difficultySelect.value;
     gameBoard.className = difficulty; 
 
@@ -32,16 +33,21 @@ function startNewGame() {
 
     gameBoard.innerHTML = ''; 
 
-    cards.forEach(value => {
+    cards.forEach((value, idx) => {
         const card = document.createElement('div');
         card.classList.add('card');
         card.dataset.value = value;
         card.textContent = ''; 
+        card.id = `card-${idx}`;
         card.addEventListener('click', handleCardClick);
         gameBoard.appendChild(card);
     });
 
-    moveCount = 0;
+    if (reset) {
+        moveCount = 0;
+        secondsElapsed = 0;
+    }
+
     document.getElementById('moveCount').textContent = moveCount;
     flippedCards = [];
     saveSessionState();
@@ -131,7 +137,7 @@ newGameBtn.addEventListener('click', startNewGame);
 function restoreSessionState() {
     const state = JSON.parse(sessionStorage.getItem('gameState'));
     if (!state) {
-        startNewGame();
+        startNewGame(false);
         updateGlobalMoveDisplay();
         return;
     }
