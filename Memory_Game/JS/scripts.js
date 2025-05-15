@@ -44,10 +44,44 @@ function startNewGame() {
     moveCount = 0;
     document.getElementById('moveCount').textContent = moveCount;
     flippedCards = [];
+    saveSessionState();
+}
+
+function saveSessionState() {
+    const state = {
+        cards: [...document.querySelectorAll('.card')].map(card => ({
+            id: card.id,
+            flipped: card.classList.contains('flipped'),
+            matched: card.classList.contains('matched')
+        })),
+        difficulty: difficultySelect.value,
+        style: document.getElementById('styleSelect').value,
+        timer: secondsElapsed,
+        moveCount: moveCount
+    };
+    sessionStorage.setItem('gameState', JSON.stringify(state));
 }
 
 let flippedCards = [];
 let moveCount = 0;
+
+function incrementGlobalMoves() {
+    let totalMoves = Number(localStorage.getItem('totalMoves') || 0);
+    totalMoves++;
+    localStorage.setItem('totalMoves', totalMoves);
+    document.getElementById('globalMoveDisplay').textContent = `Total Moves (All Tabs): ${totalMoves}`;
+}
+
+function updateGlobalMoveDisplay() {
+    let totalMoves = Number(localStorage.getItem('totalMoves') || 0);
+    document.getElementById('globalMoveDisplay').textContent = `Total Moves (All Tabs): ${totalMoves}`;
+}
+
+window.addEventListener('storage', (event) => {
+    if (event.key === 'totalMoves') {
+        updateGlobalMoveDisplay();
+    }
+});
 
 function handleCardClick(event) {
     const clickedCard = event.target;
@@ -60,7 +94,9 @@ function handleCardClick(event) {
         if (flippedCards.length === 2) {
             moveCount++;
             document.getElementById('moveCount').textContent = moveCount;
+            incrementGlobalMoves();
             checkForMatch();
+            saveSessionState();
         }
     }
 }
@@ -85,8 +121,72 @@ function checkForMatch() {
     if (allMatched) {
         setTimeout(() => {
             alert(`Game Over! Moves: ${moveCount}`);
+            saveSessionState();
         }, 500);
     }
 }
 
 newGameBtn.addEventListener('click', startNewGame);
+
+function restoreSessionState() {
+    const state = JSON.parse(sessionStorage.getItem('gameState'));
+    if (!state) {
+        startNewGame();
+        updateGlobalMoveDisplay();
+        return;
+    }
+
+    difficultySelect.value = state.difficulty;
+    document.getElementById('styleSelect').value = state.style;
+    secondsElapsed = state.timer || 0;
+    moveCount = state.moveCount || 0;
+    document.getElementById('moveCount').textContent = moveCount;
+
+    clearInterval(timerInterval);
+    document.getElementById('timer').textContent = `${String(Math.floor(secondsElapsed / 60)).padStart(2, '0')}:${String(secondsElapsed % 60).padStart(2, '0')}`;
+    timerInterval = setInterval(() => {
+        secondsElapsed++;
+        const minutes = String(Math.floor(secondsElapsed / 60)).padStart(2, '0');
+        const seconds = String(secondsElapsed % 60).padStart(2, '0');
+        document.getElementById('timer').textContent = `${minutes}:${seconds}`;
+        sessionStorage.setItem('timer', secondsElapsed);
+    }, 1000);
+
+    const difficulty = difficultySelect.value;
+    gameBoard.className = difficulty;
+
+    let cards = [...cardSets[difficulty], ...cardSets[difficulty]];
+    cards.sort(() => 0.5 - Math.random());
+
+    gameBoard.innerHTML = '';
+    flippedCards = [];
+
+    cards.forEach((value, idx) => {
+        const card = document.createElement('div');
+        card.classList.add('card');
+        card.dataset.value = value;
+        card.textContent = '';
+        card.id = `card-${idx}`;
+
+        const match = state.cards.find(c => c.id === card.id);
+        if (match) {
+            if (match.flipped) {
+                card.classList.add('flipped');
+                card.textContent = value;
+                flippedCards.push(card);
+            }
+            if (match.matched) {
+                card.classList.add('matched');
+                card.textContent = value;
+            }
+        }
+
+        card.addEventListener('click', handleCardClick);
+        gameBoard.appendChild(card);
+    });
+
+    document.getElementById('moveCount').textContent = moveCount;
+    updateGlobalMoveDisplay();
+}
+
+window.addEventListener('DOMContentLoaded', restoreSessionState);
