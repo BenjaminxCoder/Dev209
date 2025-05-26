@@ -1,7 +1,7 @@
 {
   "name": "todo-app-react-vite",
   "private": true,
-  "homepage": "https://BenjaminxCoder.github.io/todo-app-react-vite",
+  "homepage": "https://BenjaminxCoder.github.io/DEV209/todo-app/todo-app-react-vite",
   "version": "0.0.0",
   "type": "module",
   "scripts": {
